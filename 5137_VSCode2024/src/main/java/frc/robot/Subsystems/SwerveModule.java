@@ -56,6 +56,8 @@ public class SwerveModule extends SubsystemBase{
         this.moduleNumber = moduleNumber;
         this.angleOffset = moduleConstants.angleOffset;
         
+        ctreConfigs = new CTREConfigs();
+        
         /* Angle Encoder Config */
         angleEncoder = new CANCoder(moduleConstants.cancoderID);
         configAngleEncoder();

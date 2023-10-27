@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.pathplanner.lib.util.PIDConstants;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,8 +20,10 @@ public final class Constants {
 
         /* Drivetrain Constants */
         public static final double trackWidth = Units.inchesToMeters(24.75);
+        public static final double driveRadius = Units.inchesToMeters(21.0);
         public static final double wheelBase = Units.inchesToMeters(24.75); 
         public static final double wheelCircumference = Units.inchesToMeters(4.0);
+    
 
         /* Swerve Kinematics 
          * No need to ever change this unless you are not doing a traditional rectangular/square 4 module swerve */
@@ -62,12 +65,14 @@ public final class Constants {
         public static final double angleKI = 0.0;
         public static final double angleKD = 0.0;
         public static final double angleKF = 0.0;
+        public static final PIDConstants anglePIDConstants = new PIDConstants(angleKP, angleKI, angleKD);
 
         /* Drive Motor PID Values */
         public static final double driveKP = 1.6021; 
         public static final double driveKI = 0.0;
         public static final double driveKD = 0.02391;
         public static final double driveKF = 0.0;
+        public static final PIDConstants drivePIDConstants = new PIDConstants(driveKP, driveKI, driveKD);
         
         /* Drive Motor Characterization Values 
          * Divide SYSID values by 12 to convert from volts to percent output for CTRE */

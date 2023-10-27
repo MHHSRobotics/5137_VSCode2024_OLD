@@ -77,13 +77,20 @@ public class Swerve extends SubsystemBase {
         }
     }    
 
-    public void setModuleStates(SwerveModuleState[] desiredStates) {
-        SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.SwerveConstants.maxSpeed);
-        
+    /* For pathPlanner Auto */
+    public void setChassisSpeeds(ChassisSpeeds chassisSpeeds){
+        SwerveModuleState[] swerveModuleStates =
+        Constants.SwerveConstants.swerveKinematics.toSwerveModuleStates(chassisSpeeds);
+
         for(SwerveModule mod : swerveMods){
-            mod.setDesiredState(desiredStates[mod.moduleNumber], false);
+            mod.setDesiredState(swerveModuleStates[mod.moduleNumber], false);
         }
-    }    
+    }
+
+    public ChassisSpeeds getChassisSpeeds(){
+        return Constants.SwerveConstants.swerveKinematics.toChassisSpeeds(getModuleStates());
+    }
+    
 
     public Pose2d getPose() {
         return swerveDrivePoseEstimator.getEstimatedPosition();
