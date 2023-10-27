@@ -152,7 +152,10 @@ public class SwerveModule extends SubsystemBase{
         angleController.setP(Constants.SwerveConstants.angleKP);
         angleController.setI(Constants.SwerveConstants.angleKI);
         angleController.setD(Constants.SwerveConstants.angleKD);
-        angleController.setFF(Constants.SwerveConstants.angleKF); //TODO: Check if needs Position PID Wrapping or PID Factor changes
+        angleController.setFF(Constants.SwerveConstants.angleKF);
+        angleController.setPositionPIDWrappingEnabled(true);
+        angleController.setPositionPIDWrappingMaxInput(360);
+        angleController.setPositionPIDWrappingMinInput(1);//TODO: Check if needs Position PID Wrapping or PID Factor changes
         resetToAbsolute();
         integratedAngleEncoder.setPositionConversionFactor(Constants.SwerveConstants.angleRotationsToRadians);
         integratedAngleEncoder.setVelocityConversionFactor(Constants.SwerveConstants.angleRPMToRadiansPerSecond);

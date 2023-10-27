@@ -49,7 +49,7 @@ public class Auto {
    
     public Command getAuto()
     {
-        return new PathPlannerAuto("exampleAuto"); 
+        return (Command) new PathPlannerAuto("exampleAuto"); 
         
     }
   
