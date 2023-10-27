@@ -24,7 +24,7 @@ public class Auto {
         /*The swerve subsystem which is initialized for use by the auto system */
         this.swerve = swerve;
       
-        replanningConfig = new ReplanningConfig(false, true);
+        replanningConfig = new ReplanningConfig();
 
         holonomicPathFollowerConfig = 
         new HolonomicPathFollowerConfig(
@@ -42,6 +42,7 @@ public class Auto {
         holonomicPathFollowerConfig, 
         swerve);
       
+        
         NamedCommands.registerCommand("exampleCommand", new InstantCommand());
     }
 
@@ -49,6 +50,7 @@ public class Auto {
     public Command getAuto()
     {
         return new PathPlannerAuto("exampleAuto"); 
+        
     }
   
 }

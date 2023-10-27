@@ -12,6 +12,7 @@ public class RobotContainer {
     
 
     private final Swerve swerve = new Swerve();
+    private final Auto auto = new Auto(swerve);
     private final Joystick driver = new Joystick(0);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     private final FieldSim fieldSim = new FieldSim(swerve);
@@ -39,7 +40,7 @@ public class RobotContainer {
     }
 
     public Command getAutoCommand() {
-        return new InstantCommand();
+        return auto.getAuto(); 
     }
     
     public void periodic() {
