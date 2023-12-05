@@ -19,6 +19,7 @@ public final class Constants {
         
         public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-
 
+        public static final double voltageComp = 12.0;
         /* Drivetrain Constants */
         public static final double trackWidth = Units.inchesToMeters(24.75);
         public static final double driveRadius = Units.inchesToMeters(21.0);
@@ -92,8 +93,7 @@ public final class Constants {
         public static final IdleMode driveNeutralMode = IdleMode.kBrake;
         
         /* Gear Ratio Stuff */
-        public static final double angleRotationsToRadians = 2*Math.PI /angleGearRatio;
-        public static final double angleRPMToRadiansPerSecond = angleRotationsToRadians / 60.0; 
+        public static final double angleRotationsToRadians = 360.0 /angleGearRatio;
         public static final double driveRotationsToMeters = wheelCircumference/driveGearRatio;
         public static final double driveRPMToMetersPerSecond = driveRotationsToMeters/60.0;
          

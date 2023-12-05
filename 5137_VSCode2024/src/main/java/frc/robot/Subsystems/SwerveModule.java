@@ -149,18 +149,14 @@ public class SwerveModule extends SubsystemBase{
         angleMotor.setSmartCurrentLimit(Constants.SwerveConstants.angleContinuousCurrentLimit);
         angleMotor.setInverted(Constants.SwerveConstants.angleMotorInvert);
         angleMotor.setIdleMode(Constants.SwerveConstants.angleNeutralMode);
+        integratedAngleEncoder.setPositionConversionFactor(Constants.SwerveConstants.angleRotationsToRadians);
         angleController.setP(Constants.SwerveConstants.angleKP);
         angleController.setI(Constants.SwerveConstants.angleKI);
         angleController.setD(Constants.SwerveConstants.angleKD);
         angleController.setFF(Constants.SwerveConstants.angleKF);
-        angleController.setOutputRange(-1, 1);
-        angleController.setPositionPIDWrappingEnabled(true);
-        angleController.setPositionPIDWrappingMaxInput(Constants.SwerveConstants.angleRotationsToRadians);
-        angleController.setPositionPIDWrappingMinInput(0);//TODO: Check if needs Position PID Wrapping or PID Factor changes
-        resetToAbsolute();
-        integratedAngleEncoder.setPositionConversionFactor(Constants.SwerveConstants.angleRotationsToRadians);
-        integratedAngleEncoder.setVelocityConversionFactor(Constants.SwerveConstants.angleRPMToRadiansPerSecond);
+        angleMotor.enableVoltageCompensation(Constants.SwerveConstants.voltageComp);
         angleMotor.burnFlash();
+        resetToAbsolute();
     }
 
     private void configDriveMotor(){        
@@ -168,14 +164,15 @@ public class SwerveModule extends SubsystemBase{
         driveMotor.setSmartCurrentLimit(Constants.SwerveConstants.driveContinuousCurrentLimit);
         driveMotor.setInverted(Constants.SwerveConstants.driveMotorInvert);
         driveMotor.setIdleMode(Constants.SwerveConstants.driveNeutralMode);
+        driveEncoder.setPositionConversionFactor(Constants.SwerveConstants.driveRotationsToMeters);
+        driveEncoder.setVelocityConversionFactor(Constants.SwerveConstants.driveRPMToMetersPerSecond);
         driveController.setP(Constants.SwerveConstants.driveKP);
         driveController.setI(Constants.SwerveConstants.driveKI); 
         driveController.setD(Constants.SwerveConstants.driveKD);
         driveController.setFF(Constants.SwerveConstants.angleKF);
-        driveEncoder.setPositionConversionFactor(Constants.SwerveConstants.driveRotationsToMeters);
-        driveEncoder.setVelocityConversionFactor(Constants.SwerveConstants.driveRPMToMetersPerSecond);
-        driveEncoder.setPosition(0); 
+        driveMotor.enableVoltageCompensation(Constants.SwerveConstants.voltageComp);
         driveMotor.burnFlash();
+        driveEncoder.setPosition(0.0); 
     }
 
     public double getVelocity()
